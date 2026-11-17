@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useI18n } from "@/i18n";
 
 export function LegalPage({ kind }: { kind: "privacy" | "terms" }) {
@@ -31,7 +32,7 @@ export function NotFound() {
     <div className="container max-w-xl py-24 text-center">
       <h1 className="text-4xl">{t.notFound.title}</h1>
       <p className="mt-4 text-muted">{t.notFound.body}</p>
-      <a href="/" className="mt-8 inline-block font-semibold text-accent-strong underline underline-offset-4">{t.notFound.home}</a>
+      <Link to="/" className="mt-8 inline-block font-semibold text-accent-strong underline underline-offset-4">{t.notFound.home}</Link>
     </div>
   );
 }

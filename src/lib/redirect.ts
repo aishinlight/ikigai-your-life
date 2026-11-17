@@ -15,3 +15,9 @@ export function safeRedirect(target: string | null | undefined, fallback = "/das
     return fallback;
   }
 }
+
+/** Absolute URL for an in-app path, respecting the deploy base path (e.g. GitHub Pages "/ikigai-your-life/"). */
+export function appUrl(path: string): string {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return `${window.location.origin}${base}${path}`;
+}

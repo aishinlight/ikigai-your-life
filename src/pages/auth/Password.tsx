@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
+import { appUrl } from "@/lib/redirect";
 import { useI18n } from "@/i18n";
 import { useAuth } from "@/auth/AuthProvider";
 import { Button, ErrorNote, Notice, PageSkeleton } from "@/components/ui";
@@ -17,7 +18,7 @@ export function ForgotPassword() {
     setBusy(true);
     setErr("");
     const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-      redirectTo: `${window.location.origin}/reset-password`,
+      redirectTo: appUrl("/reset-password"),
     });
     setBusy(false);
     if (error) return setErr(error.message);

@@ -47,7 +47,10 @@ coach/admin access to conversations or journals, data sharing.
 5. **Legal pages** — replace the placeholders in `src/pages/Legal.tsx` with a real Privacy Policy
    and Terms (Supabase + Anthropic are data processors). The placeholders are *not* legal compliance.
 6. **Ukrainian copy** — have a native speaker review `src/i18n/uk.ts`.
-7. **Deploy** — any static host (Netlify, Vercel, Cloudflare Pages) with SPA fallback to `index.html`.
+7. **GitHub Pages (free)** — make the repository public, then Settings → Pages → Source: **GitHub Actions**.
+   The workflow `.github/workflows/deploy-pages.yml` publishes to `https://aishinlight.github.io/ikigai-your-life/`
+   on every push to `main`. Add the public `VITE_*` values under Settings → Secrets and variables → Actions → **Variables**.
+8. **Other hosts** — any static host (Netlify, Vercel, Cloudflare Pages) with SPA fallback to `index.html`.
    Build: `npm run build`, output `dist/`. Do not publish before steps 2–5 are done.
 
 ### Coach/admin role (only if ever needed)

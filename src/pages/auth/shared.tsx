@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { supabase, isBackendConfigured } from "@/lib/supabase";
+import { appUrl } from "@/lib/redirect";
 import { useI18n } from "@/i18n";
 import { BlurShapes } from "@/components/HeroArt";
 import { Button, ErrorNote, Notice } from "@/components/ui";
@@ -47,7 +48,7 @@ export function GoogleButton({ next }: { next: string }) {
     setErr("");
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${window.location.origin}${next}` },
+      options: { redirectTo: appUrl(next) },
     });
     if (error) setErr(error.message);
   };

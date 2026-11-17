@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, Navigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
-import { safeRedirect } from "@/lib/redirect";
+import { appUrl, safeRedirect } from "@/lib/redirect";
 import { useI18n } from "@/i18n";
 import { useAuth } from "@/auth/AuthProvider";
 import { Button, ErrorNote, Notice } from "@/components/ui";
@@ -31,7 +31,7 @@ export default function Signup() {
       password,
       options: {
         data: { full_name: name.trim() },
-        emailRedirectTo: `${window.location.origin}${next}`,
+        emailRedirectTo: appUrl(next),
       },
     });
     setBusy(false);
