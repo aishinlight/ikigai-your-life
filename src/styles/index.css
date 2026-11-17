@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Semantic design tokens (HSL channels). Palette from the brief:
+   ivory #FAF8F3, blush #F3E5E5, lavender #EAE4F0, sage #E5ECE5,
+   terracotta #B58B7D, charcoal #35312F. */
+@layer base {
+  :root {
+    --background: 43 46% 97%;
+    --foreground: 20 6% 20%;
+    --muted: 20 5% 40%;
+    --blush: 0 36% 93%;
+    --lavender: 270 27% 92%;
+    --sage: 120 15% 91%;
+    --accent: 15 28% 60%;
+    /* darker terracotta for text so contrast meets WCAG AA on ivory */
+    --accent-strong: 15 28% 40%;
+    --line: 30 15% 86%;
+    --danger: 0 55% 42%;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01";
+  }
+  h1, h2, h3, h4 { @apply font-serif tracking-tight; }
+  ::selection { background: hsl(var(--blush)); }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--accent-strong));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.22em] text-accent-strong; }
+  .card { @apply rounded-card bg-white/70 shadow-soft border border-line/60; }
+  .input {
+    @apply w-full rounded-2xl border border-line bg-white/80 px-4 py-3 text-base text-foreground
+      placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-accent/50;
+  }
+  .label { @apply mb-1.5 block text-sm font-medium text-foreground; }
+  .section { @apply py-20 md:py-28; }
+  .prose-soft p { @apply mb-4 leading-relaxed text-foreground/85; }
+}
+
+/* restrained fade-up motion */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* Print: clean report for "Print / Save as PDF" */
+@media print {
+  @page { margin: 18mm; }
+  body { background: #fff; }
+  .no-print { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .print-only { display: block !important; }
+  .card { box-shadow: none; border-color: #ddd; background: #fff; break-inside: avoid; }
+}
+.print-only { display: none; }

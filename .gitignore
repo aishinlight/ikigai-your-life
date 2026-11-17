@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+supabase/.temp
+supabase/.branches
+supabase/functions/.env
+supabase/functions/.local-ca.crt
+*.log
+.DS_Store
