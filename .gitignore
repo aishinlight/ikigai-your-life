@@ -9,3 +9,4 @@ supabase/functions/.env
 supabase/functions/.local-ca.crt
 *.log
 .DS_Store
+*.tsbuildinfo
